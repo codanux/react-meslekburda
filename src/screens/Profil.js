@@ -1,32 +1,58 @@
 import React, {Component} from 'react';
-import {StyleSheet, Button ,Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
+import { Container, Header, View, Title, Text, Button, Icon, Left, Right, Body, Content } from "native-base";
+
 import I18n from '../I18n';
-import { onSignOut } from '../auth';
+import { onSignOut , USER_NAME} from '../auth';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export class ProfilScreen extends Component {
+  
+  constructor(props){
+    super(props);
+    this.state = {name:'Test'};
+  }
+
+  componentWillMount = async () => {
+    await AsyncStorage.getItem(USER_NAME)
+    .then((e)=>{
+         this.setState({
+          name: e
+         });
+    });
+   }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.instructions}>User Profil</Text>
-        <Button
-          title={I18n.t('exit')}
-          onPress={() =>{
-            onSignOut()
-            this.props.navigation.navigate('LoginPage');
-          }}
-        />
+      <Container>
+        <Header span>
+          <Body style={styles.center}>
+            <Title> { I18n.t('welcome') +" "+ this.state.name}</Title>
+          </Body>
+        </Header>
+        
+        <Content padder>
+          <Text> Veri </Text>
 
-      </View>
+          <Button block
+            onPress={() =>{
+              onSignOut()
+              this.props.navigation.navigate('LoginStack');
+            }}>
+            <Text> {I18n.t('exit')} </Text>
+          </Button>
+
+        </Content>
+    </Container>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  center: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 20,

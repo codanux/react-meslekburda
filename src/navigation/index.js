@@ -78,11 +78,11 @@ export const SignedIn = createBottomTabNavigator(
 export const createApp = (signedIn = false) => {
   return createAppContainer(createSwitchNavigator(
     {
-      HomePage: SignedIn,
-      LoginPage : SignedOut
+      HomeStack: SignedIn,
+      LoginStack : SignedOut
     },
     {
-      initialRouteName: signedIn ? "HomePage" : "LoginPage"
+      initialRouteName: signedIn ? "HomeStack" : "LoginStack"
     }
   ));
 };

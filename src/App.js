@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {createApp} from "./navigation";
 import { isSignedIn } from "./auth";
 
+
 export default class App extends Component {
 
   constructor(props) {

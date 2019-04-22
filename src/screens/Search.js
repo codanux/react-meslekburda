@@ -1,19 +1,53 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform,StyleSheet} from 'react-native';
+import { Container, Header, Content, List, ListItem, Item, Input, Button, Text, Left, Right, Icon } from 'native-base';
+
 
 import I18n from '../I18n';
-
-const instructions = Platform.select({
-  ios: I18n.t('welcomeios'),
-  android: I18n.t('welcomeandroid'),
-});
 
 export class SearchScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.instructions}>Search</Text>
-      </View>
+      <Container>
+         <Header searchBar rounded>
+          <Item>
+            <Icon name="ios-search" />
+            <Input placeholder="Search" />
+          </Item>
+          <Button transparent>
+            <Text>Ara</Text>
+          </Button>
+        </Header>
+
+        <Content>
+          <List>
+            <ListItem selected>
+              <Left>
+                <Text>Simon Mignolet</Text>
+              </Left>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+            <ListItem>
+             <Left>
+                <Text>Nathaniel Clyne</Text>
+              </Left>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+            <ListItem>
+              <Left>
+                <Text>Dejan Lovren</Text>
+              </Left>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+          </List>
+        </Content>
+      </Container>
     );
   }
 }

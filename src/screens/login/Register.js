@@ -1,20 +1,52 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-
+import { StyleSheet} from 'react-native';
 import I18n from '../../I18n';
+import { onSignIn } from "../../auth";
+
+import { Container, Header, Content, Form, Button, Text ,Item, Input, Label } from 'native-base';
 
 
 export class RegisterScreen extends Component {
+  
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}> { I18n.t('register') + " " + I18n.t('page')} </Text>
-      </View>
+      <Container>
+      <Content padder>
+
+        <Form>
+          <Item stackedLabel>
+            <Label>Username</Label>
+            <Input />
+          </Item>
+          <Item stackedLabel last>
+            <Label>Password</Label>
+            <Input />
+          </Item>
+          
+        </Form>
+       
+        <Button block success style={styles.login}
+            onPress={()=>{
+              onSignIn();
+              this.props.navigation.navigate('HomeStack');
+            }}>
+          <Text>{ I18n.t('register') }</Text>
+        </Button>
+
+        <Button block padder onPress={() => this.props.navigation.navigate('Login')}>
+          <Text>{ I18n.t('login') }</Text>
+        </Button>
+          
+      </Content>
+    </Container>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  login: {
+    marginBottom:10
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -25,10 +57,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
