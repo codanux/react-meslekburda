@@ -1,4 +1,4 @@
-# react-meslekburda
+# react-native
 
 ![alt text](https://raw.githubusercontent.com/codanux/react-meslekburda/master/screenshot/Screenshot_1555935830.png?token=AK7TWCCHTRHOOSRT4ZKYZ724XW2ES)
 
